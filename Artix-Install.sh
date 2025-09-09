@@ -12,6 +12,8 @@ HOME_DISK="/dev/sda1"
 ROOT_MOUNT="/mnt"
 EFI_MOUNT="$ROOT_MOUNT/boot/efi"
 HOME_MOUNT="$ROOT_MOUNT/home"
+RName="ROOT"
+BName="BOOT"
 
 echo "=== Starting Artix Linux installation ==="
 
@@ -21,8 +23,8 @@ echo -e "g\nn\n1\n\n+512M\nt\n1\nn\n2\n\n\nw\n" | fdisk $TARGET_DISK
 
 # 2. Format partitions
 echo "Formatting partitions..."
-mkfs.fat -F32 $EFI_PARTITION  # EFI partition
-mkfs.btrfs -f $ROOT_PARTITION  # Root partition
+mkfs.fat -F32 -n $BName $EFI_PARTITION  # EFI partition
+mkfs.btrfs -L $RName -f $ROOT_PARTITION  # Root partition
 
 # 3. Mount root partition and create subvolumes
 echo "Mounting $ROOT_PARTITION and creating Btrfs subvolumes..."
@@ -150,7 +152,7 @@ ln -s /etc/s6/s6-rc.d/source/* /etc/s6/s6-rc.d/user/
 echo "Set root password:"
 passwd
 
-pacman -Syy android-tools usbutils util-linux cups sane uucp dbus acpi polkit htop seatd --needed
+pacman -Syy android-tools usbutils util-linux cups sane uucp dbus acpi polkit htop seatd htop git xorg xorg-apps xorg-drivers go rustup --needed
 
 # Prompt to create a regular user
 echo ""
