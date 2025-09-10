@@ -26,11 +26,11 @@ read -p "Press Enter to continue or Ctrl+C to abort..."
 
 # 1. Create partitions on nvme0n1
 echo "Creating partitions on $TARGET_DISK..."
-echo -e "g\nn\n1\n\n+512M\nt\n1\nef\nn\n2\n\n\nw\n" | fdisk $TARGET_DISK
+#echo -e "g\nn\n1\n\n+512M\nt\n1\nef\nn\n2\n\n\nw\n" | fdisk $TARGET_DISK
 
 # Wait for kernel to re-read partition table
 sleep 2
-partprobe $TARGET_DISK
+#partprobe $TARGET_DISK
 
 # 2. Format only the root partitions
 echo "Formatting root partitions..."
