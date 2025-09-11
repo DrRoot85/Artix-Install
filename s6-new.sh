@@ -195,7 +195,7 @@ artix-chroot $ROOT_MOUNT snapper -c home create-config /home || true
 
 # Services
 artix-chroot $ROOT_MOUNT s6-rc-bundle add default elogind || true
-artix-chroot $ROOT_MOUNT s6-rc-bundle add default networkmanager || true
+artix-chroot $ROOT_MOUNT s6-rc-bundle add default connmand || true
 artix-chroot $ROOT_MOUNT s6-rc-bundle add default dhcpcd || true
 artix-chroot $ROOT_MOUNT s6-db-reload || true
 
