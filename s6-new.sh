@@ -64,7 +64,7 @@ umount $ROOT_MOUNT
 # ------------------------------------------------
 echo "Mounting subvolumes..."
 mount -o subvol=@,compress=zstd,noatime $ROOT_PARTITION $ROOT_MOUNT
-mkdir -p $ROOT_MOUNT/{boot/efi,home,var,opt,srv,tmp}
+mkdir -p $ROOT_MOUNT/{boot/efi,home,home/.snapshots,var,opt,srv,tmp}
 
 mount -o subvol=@var,compress=zstd,noatime $ROOT_PARTITION $ROOT_MOUNT/var
 mount -o subvol=@opt,compress=zstd,noatime $ROOT_PARTITION $ROOT_MOUNT/opt
